@@ -6,7 +6,7 @@
 //   "cno": "378282246310005",
 //   "edate": "2026-02"
 // }
-hostName = "localhost";
+hostName = "18.183.73.76";
 port = 3000;
 
 document.querySelector("#send").addEventListener("click", async () => {
@@ -27,6 +27,7 @@ document.querySelector("#send").addEventListener("click", async () => {
     });
     const json = await res.json();
     console.log(json);
+    document.querySelector("#result").textContent = JSON.stringify(json);
   } catch (e) {
     console.error(e);
   }
