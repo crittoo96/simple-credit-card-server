@@ -4,7 +4,7 @@
 // {
 //   "cname": "Yoshiki Onaga",
 //   "cno": "378282246310005",
-//   "edate": "2026-02"
+//   "edate": "02/26"
 // }
 hostName = "localhost";
 port = 3000;
