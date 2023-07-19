@@ -17,13 +17,21 @@ module.exports = {
 
   validateEndDate: body("edate")
     .custom((value, { req }) => {
-      if (!moment(value, "YYYY-MM", true).isValid()) {
-        throw new Error("Invalid end date. Format should be YYYY-MM");
+      if (!moment(value, "MM/YY", true).isValid()) {
+        throw new Error("Invalid end date. Format should be MM/YY");
       }
       return true;
     })
     .custom((value, { req }) => {
-      if (moment(value).isSameOrBefore(moment())) {
+      // const compareDate = new Date();
+      const yy = value.slice(-2);
+      const mm = value.slice(0, 2);
+      const formattedExpiryDateStr = `20${yy}-${mm}`;
+      const expiryDate = moment(formattedExpiryDateStr, "YYYY-MM");
+
+      // const formattedCompareDate = moment(compareDate);
+
+      if (expiryDate.isSameOrBefore(moment())) {
         throw new Error("Invalid end date. Date should be in the future.");
       }
       return true;

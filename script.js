@@ -6,7 +6,7 @@
 //   "cno": "378282246310005",
 //   "edate": "2026-02"
 // }
-hostName = "18.183.73.76";
+hostName = "localhost";
 port = 3000;
 
 document.querySelector("#send").addEventListener("click", async () => {

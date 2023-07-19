@@ -22,10 +22,9 @@ describe("POST /credit/verify", () => {
     request(app)
       .post("/credit/verify")
       .set("Content-Type", "application/json")
-      .send({ cname: "John Doe", cno: "1234567890123456", edate: "2030-07" })
+      .send({ cname: "John Doe", cno: "1234567890123456", edate: "07/30" })
       .expect(401)
       .then((res) => {
-        console.log(res.body);
         expect(res.body.success).toBe(false);
         expect(res.body.errors[0].msg).toBe(
           "Invalid card number, https://stripe.com/docs/testing contains test card number"
@@ -38,12 +37,12 @@ describe("POST /credit/verify", () => {
     request(app)
       .post("/credit/verify")
       .set("Content-Type", "application/json")
-      .send({ cname: "John Doe", cno: "4539692580891212", edate: "202307" })
+      .send({ cname: "John Doe", cno: "4539692580891212", edate: "2023-06" })
       .expect(401)
       .then((res) => {
         expect(res.body.success).toBe(false);
         expect(res.body.errors[0].msg).toBe(
-          "Invalid end date. Format should be YYYY-MM"
+          "Invalid end date. Format should be MM/YY"
         );
         done();
       });
@@ -53,7 +52,7 @@ describe("POST /credit/verify", () => {
     request(app)
       .post("/credit/verify")
       .set("Content-Type", "application/json")
-      .send({ cname: "John Doe", cno: "4539692580891212", edate: "2021-07" })
+      .send({ cname: "John Doe", cno: "4539692580891212", edate: "07/21" })
       .expect(401)
       .then((res) => {
         expect(res.body.success).toBe(false);
@@ -68,14 +67,14 @@ describe("POST /credit/verify", () => {
     request(app)
       .post("/credit/verify")
       .set("Content-Type", "application/json")
-      .send({ cname: "John Doe", cno: "4539692580891212", edate: "2026-07" })
+      .send({ cname: "John Doe", cno: "4539692580891212", edate: "07/26" })
       .expect(200)
       .then((res) => {
         expect(res.body.success).toBe(true);
         expect(res.body.message).toBe("Credit card verified successfully!");
         expect(res.body.cname).toBe("John Doe");
         expect(res.body.cno).toBe("4539692580891212");
-        expect(res.body.edate).toBe("2026-07");
+        expect(res.body.edate).toBe("07/26");
         done();
       });
   });
