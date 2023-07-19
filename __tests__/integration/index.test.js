@@ -28,7 +28,7 @@ describe("POST /credit/verify", () => {
         console.log(res.body);
         expect(res.body.success).toBe(false);
         expect(res.body.errors[0].msg).toBe(
-          "Invalid card number, https://stripe.com/docs/testing contains test card numer"
+          "Invalid card number, https://stripe.com/docs/testing contains test card number"
         );
         done();
       });

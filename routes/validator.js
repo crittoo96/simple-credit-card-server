@@ -12,7 +12,7 @@ module.exports = {
 
     // Custom message
     .withMessage(
-      "Invalid card number, https://stripe.com/docs/testing contains test card numer"
+      "Invalid card number, https://stripe.com/docs/testing contains test card number"
     ),
 
   validateEndDate: body("edate")
