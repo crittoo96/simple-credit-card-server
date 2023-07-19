@@ -14,7 +14,7 @@ router.post(
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(401).json({ errors: errors, success: false });
+      return res.status(401).json({ errors: errors.errors, success: false });
     }
 
     const { cname, cno, edate } = req.body;

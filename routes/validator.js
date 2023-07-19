@@ -11,18 +11,20 @@ module.exports = {
     .isCreditCard()
 
     // Custom message
-    .withMessage("Must be a valid credit card number"),
+    .withMessage(
+      "Invalid card number, https://stripe.com/docs/testing contains test card numer"
+    ),
 
   validateEndDate: body("edate")
     .custom((value, { req }) => {
       if (!moment(value, "YYYY-MM", true).isValid()) {
-        throw new Error("Invalid date. Format should be YYYY-MM");
+        throw new Error("Invalid end date. Format should be YYYY-MM");
       }
       return true;
     })
     .custom((value, { req }) => {
       if (moment(value).isSameOrBefore(moment())) {
-        throw new Error("Date should be in the future.");
+        throw new Error("Invalid end date. Date should be in the future.");
       }
       return true;
     }),
