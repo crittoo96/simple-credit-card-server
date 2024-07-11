@@ -6,17 +6,18 @@
 //   "cno": "378282246310005",
 //   "edate": "02/26"
 // }
-hostName = "localhost";
+hostName = "localhost"; // 送信先の「クレジットカード情報サーバのIPアドレス or ホスト名」に変更
 port = 3000;
 
 document.querySelector("#send").addEventListener("click", async () => {
-  const cname = document.querySelector("#cname").value;
-  const cno = document.querySelector("#cno").value;
-  const edate = document.querySelector("#edate").value;
+  // フォームの値を取得
+  const cname = document.querySelector("#cname").value; // カード名
+  const cno = document.querySelector("#cno").value; // カード番号
+  const edate = document.querySelector("#edate").value; // 有効期限
 
-  console.log(cname, cno, edate);
+  console.log("カード情報:", cname, cno, edate);
   try {
-    console.log(hostName, port);
+    console.log("送信先:", hostName, port);
 
     const res = await fetch(`http://${hostName}:${port}/credit/verify`, {
       method: "POST",

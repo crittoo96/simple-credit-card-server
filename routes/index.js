@@ -1,11 +1,12 @@
 var express = require("express");
 var router = express.Router();
+var path = require("path");
 const { validationResult } = require("express-validator");
 const { validateCardNumber, validateEndDate } = require("./validator");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.json({ title: "Welcome to credit card validator" });
+  res.sendFile("sample.html", { root: path.join(__dirname, "../public") });
 });
 
 router.post(

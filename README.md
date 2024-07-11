@@ -2,16 +2,44 @@
 
 ## A simple credit card validator
 
-### How to use
+### セットアップ手順
 
-1. Clone this repository
-2. npm install
-3. npm start
-4. access localhost:3000 or ip:3000
-5. POST to /credit/verify with a JSON body containing the credit card number
-6. Content-Type must be application/json
-7. {
-  "cname": "Yoshiki Onaga",
-  "cno": "4539692580891212",
-  "edate": "11/28"
-}
+1. 依存関係をインストール
+
+   ```bash
+   $npm install
+   ```
+
+2. サーバーをスタート
+
+   ```bash
+   $npm start
+   ```
+
+3. アクセス先
+
+  `localhost:3000` or `<EC2 PublicIP>:3000`
+
+  もしパブリックIPが12.34.56.78だったら、
+  `http://12.34.56.78:3000`
+  でindexページにアクセスできます。
+
+  開発環境では、`localhost:3000`でアクセスできます。
+
+  アクセスしたら、サンプルページが表示されます。
+
+4. クレジット情報のアクセス先
+
+   ```text
+   POST /credit/verify
+   {
+      "cname": "Yoshiki Onaga",
+      "cno": "4539692580891212",
+      "edate": "11/28"
+    }
+    ```
+
+    ```bash
+    $curl -X POST http://localhost:3000/credit/verify -H "Content-Type: application/json" -d '{"cname": "Yoshiki Onaga", "cno": "4539692580891212", "edate": "11/28"}'
+    ```
+
