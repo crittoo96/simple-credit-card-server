@@ -13,7 +13,7 @@
 2. サーバーをスタート
 
    ```bash
-   $npm start
+   $npm start <IPアドレス>
    ```
 
 3. アクセス先

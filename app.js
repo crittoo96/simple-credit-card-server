@@ -16,6 +16,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
+const serverIp = process.env.SERVER_IP;
+
+// 動的に生成するJavaScriptファイルのルートを設定
+app.get("/script.js", (req, res) => {
+  const ipAddress = serverIp;
+  console.log("ipAddress:", ipAddress);
+  res.render("script-js", { ipAddress });
+});
+
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
